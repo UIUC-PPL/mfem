@@ -712,7 +712,7 @@ void MemoryPrintFlags(unsigned flags)
 }
 
 
-MemoryManager mm;
-bool MemoryManager::exists = false;
+thread_local MemoryManager mm;
+thread_local bool MemoryManager::exists = false;
 
 } // namespace mfem

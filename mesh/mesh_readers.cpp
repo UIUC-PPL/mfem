@@ -25,7 +25,7 @@ using namespace std;
 namespace mfem
 {
 
-bool Mesh::remove_unused_vertices = true;
+thread_local bool Mesh::remove_unused_vertices = true;
 
 void Mesh::ReadMFEMMesh(std::istream &input, bool mfem_v11, int &curved)
 {

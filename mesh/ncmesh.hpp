@@ -705,9 +705,9 @@ protected: // implementation
       void GetMatrix(DenseMatrix& point_matrix) const;
    };
 
-   static PointMatrix pm_tri_identity;
-   static PointMatrix pm_quad_identity;
-   static PointMatrix pm_hex_identity;
+   static thread_local PointMatrix pm_tri_identity;
+   static thread_local PointMatrix pm_quad_identity;
+   static thread_local PointMatrix pm_hex_identity;
 
    static const PointMatrix& GetGeomIdentity(int geom);
 
@@ -774,9 +774,11 @@ protected: // implementation
       void Initialize(const mfem::Element* elem);
    };
 
-   static GeomInfo GI[Geometry::NumGeom];
+   static thread_local GeomInfo GI[Geometry::NumGeom];
 
+#if 0
    static GeomInfo &gi_hex, &gi_quad, &gi_tri;
+#endif
 
 #ifdef MFEM_DEBUG
 public:

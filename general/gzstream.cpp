@@ -232,9 +232,9 @@ ifgzstream::ifgzstream(char const *name, char const *mode)
 
 // static class member, ofgzstream::default_mode
 #ifdef MFEM_USE_GZSTREAM
-char const *ofgzstream::default_mode = "zwb6";
+char const * const ofgzstream::default_mode = "zwb6";
 #else
-char const *ofgzstream::default_mode = "w";
+char const * const ofgzstream::default_mode = "w";
 #endif
 
 ofgzstream::ofgzstream(char const *name, char const *mode)

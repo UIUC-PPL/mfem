@@ -49,7 +49,7 @@ static const char *backend_name[Backend::NUM_BACKENDS] =
 
 
 // Initialize the unique global Device variable.
-Device Device::device_singleton;
+thread_local Device Device::device_singleton;
 
 
 Device::~Device()

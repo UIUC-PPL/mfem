@@ -185,7 +185,7 @@ public:
    // Global parameter that can be used to control the removal of unused
    // vertices performed when reading a mesh in MFEM format. The default value
    // (true) is set in mesh_readers.cpp.
-   static bool remove_unused_vertices;
+   static thread_local bool remove_unused_vertices;
 
 protected:
    Operation last_operation;

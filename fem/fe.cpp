@@ -6956,8 +6956,8 @@ Poly_1D::~Poly_1D()
    }
 }
 
-Array2D<int> Poly_1D::binom;
-Poly_1D poly1d;
+thread_local Array2D<int> Poly_1D::binom;
+thread_local Poly_1D poly1d;
 
 
 TensorBasisElement::TensorBasisElement(const int dims, const int p,
@@ -11956,19 +11956,19 @@ void NURBS3DFiniteElement::CalcDShape(const IntegrationPoint &ip,
 
 // Object declared in mesh/triangle.hpp.
 // Defined here to ensure it is constructed before 'Geometries'.
-Linear2DFiniteElement TriangleFE;
+thread_local Linear2DFiniteElement TriangleFE;
 
 // Object declared in mesh/tetrahedron.hpp.
 // Defined here to ensure it is constructed before 'Geometries'.
-Linear3DFiniteElement TetrahedronFE;
+thread_local Linear3DFiniteElement TetrahedronFE;
 
 // Object declared in mesh/wedge.hpp.
 // Defined here to ensure it is constructed after 'poly1d' and before
 // 'Geometries'.
-H1_WedgeElement WedgeFE(1);
+thread_local H1_WedgeElement WedgeFE(1);
 
 // Object declared in geom.hpp.
 // Construct 'Geometries' after 'TriangleFE', 'TetrahedronFE', and 'WedgeFE'.
-Geometry Geometries;
+thread_local Geometry Geometries;
 
 }

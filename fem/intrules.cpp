@@ -837,9 +837,9 @@ int Quadrature1D::CheckOpen(int type)
 }
 
 
-IntegrationRules IntRules(0, Quadrature1D::GaussLegendre);
+thread_local IntegrationRules IntRules(0, Quadrature1D::GaussLegendre);
 
-IntegrationRules RefinedIntRules(1, Quadrature1D::GaussLegendre);
+thread_local IntegrationRules RefinedIntRules(1, Quadrature1D::GaussLegendre);
 
 IntegrationRules::IntegrationRules(int Ref, int _type):
    quad_type(_type)

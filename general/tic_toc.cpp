@@ -444,7 +444,7 @@ StopWatch::~StopWatch()
 }
 
 
-StopWatch tic_toc;
+thread_local StopWatch tic_toc;
 
 void tic()
 {

@@ -48,7 +48,7 @@ namespace mfem
 {
 namespace internal
 {
-extern long long flop_count;
+extern thread_local long long flop_count;
 }
 }
 #define MFEM_FLOPS_RESET() (mfem::internal::flop_count = 0)

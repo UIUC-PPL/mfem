@@ -111,7 +111,7 @@ public:
 };
 
 // Defined in fe.cpp to ensure construction before 'mfem::Geometries'.
-extern class Linear3DFiniteElement TetrahedronFE;
+extern thread_local class Linear3DFiniteElement TetrahedronFE;
 
 }
 

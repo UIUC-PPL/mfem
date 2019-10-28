@@ -365,10 +365,10 @@ public:
 };
 
 /// A global object with all integration rules (defined in intrules.cpp)
-extern IntegrationRules IntRules;
+extern thread_local IntegrationRules IntRules;
 
 /// A global object with all refined integration rules
-extern IntegrationRules RefinedIntRules;
+extern thread_local IntegrationRules RefinedIntRules;
 
 }
 

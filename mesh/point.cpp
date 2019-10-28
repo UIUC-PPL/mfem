@@ -27,6 +27,6 @@ void Point::GetVertices( Array<int> &v ) const
    v[0] = indices[0];
 }
 
-PointFiniteElement PointFE;
+thread_local PointFiniteElement PointFE;
 
 }

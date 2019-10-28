@@ -103,7 +103,7 @@ class Device
 private:
    enum MODES {SEQUENTIAL, ACCELERATED};
 
-   static Device device_singleton;
+   static thread_local Device device_singleton;
 
    MODES mode;
    int dev = 0; ///< Device ID of the configured device.

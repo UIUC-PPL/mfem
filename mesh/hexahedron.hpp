@@ -63,7 +63,7 @@ public:
    virtual ~Hexahedron() { }
 };
 
-extern TriLinear3DFiniteElement HexahedronFE;
+extern thread_local TriLinear3DFiniteElement HexahedronFE;
 
 }
 

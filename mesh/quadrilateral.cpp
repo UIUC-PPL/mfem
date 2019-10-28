@@ -52,6 +52,6 @@ void Quadrilateral::GetVertices( Array<int> &v ) const
    }
 }
 
-BiLinear2DFiniteElement QuadrilateralFE;
+thread_local BiLinear2DFiniteElement QuadrilateralFE;
 
 }

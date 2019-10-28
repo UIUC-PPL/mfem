@@ -93,7 +93,7 @@ public:
 };
 
 // Defined in fe.cpp to ensure construction before 'mfem::Geometries'.
-extern Linear2DFiniteElement TriangleFE;
+extern thread_local Linear2DFiniteElement TriangleFE;
 
 }
 

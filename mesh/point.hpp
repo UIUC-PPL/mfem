@@ -58,7 +58,7 @@ public:
 };
 
 class PointFiniteElement;
-extern PointFiniteElement PointFE;
+extern thread_local PointFiniteElement PointFE;
 
 }
 

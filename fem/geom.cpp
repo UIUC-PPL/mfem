@@ -15,7 +15,7 @@
 namespace mfem
 {
 
-const char *Geometry::Name[NumGeom] =
+const char * const Geometry::Name[NumGeom] =
 { "Point", "Segment", "Triangle", "Square", "Tetrahedron", "Cube", "Prism" };
 
 const double Geometry::Volume[NumGeom] =
@@ -1392,6 +1392,6 @@ const IntegrationRule *GeometryRefiner::RefineInterior(Geometry::Type Geom,
    return ir;
 }
 
-GeometryRefiner GlobGeometryRefiner;
+thread_local GeometryRefiner GlobGeometryRefiner;
 
 }

@@ -34,13 +34,13 @@ std::string MakeParFilename(const std::string &prefix, const int myid,
 #ifdef MFEM_COUNT_FLOPS
 namespace internal
 {
-long long flop_count;
+thread_local long long flop_count;
 }
 #endif
 
 #ifdef MFEM_USE_MPI
 
-MPI_Comm MFEM_COMM_WORLD = MPI_COMM_WORLD;
+static thread_local MPI_Comm MFEM_COMM_WORLD = MPI_COMM_WORLD;
 
 MPI_Comm GetGlobalMPI_Comm()
 {

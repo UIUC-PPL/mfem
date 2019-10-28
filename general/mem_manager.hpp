@@ -389,7 +389,7 @@ private:
    typedef Memory<int> Mem;
 
    /// Allow to detect if a global memory manager instance exists
-   static bool exists;
+   static thread_local bool exists;
 
    // Methods used by class Memory
 
@@ -732,7 +732,7 @@ extern void MemoryPrintFlags(unsigned flags);
 
 
 /// The (single) global memory manager object
-extern MemoryManager mm;
+extern thread_local MemoryManager mm;
 
 } // namespace mfem
 

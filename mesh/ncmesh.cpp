@@ -145,11 +145,13 @@ void CoarseFineTransformations::GetCoarseToFineMap(
    ref_type_to_matrix.ShiftUpI();
 }
 
-NCMesh::GeomInfo NCMesh::GI[Geometry::NumGeom];
+thread_local NCMesh::GeomInfo NCMesh::GI[Geometry::NumGeom];
 
+#if 0
 NCMesh::GeomInfo& NCMesh::gi_hex  = NCMesh::GI[Geometry::CUBE];
 NCMesh::GeomInfo& NCMesh::gi_quad = NCMesh::GI[Geometry::SQUARE];
 NCMesh::GeomInfo& NCMesh::gi_tri  = NCMesh::GI[Geometry::TRIANGLE];
+#endif
 
 void NCMesh::GeomInfo::Initialize(const mfem::Element* elem)
 {
@@ -577,6 +579,7 @@ int NCMesh::NewHexahedron(int n0, int n1, int n2, int n3,
 
    // get faces and assign face attributes
    Face* f[6];
+   NCMesh::GeomInfo& gi_hex  = NCMesh::GI[Geometry::CUBE];
    for (int i = 0; i < gi_hex.nf; i++)
    {
       const int* fv = gi_hex.faces[i];
@@ -603,6 +606,7 @@ int NCMesh::NewQuadrilateral(int n0, int n1, int n2, int n3,
 
    // get (degenerate) faces and assign face attributes
    Face* f[4];
+   NCMesh::GeomInfo& gi_quad = NCMesh::GI[Geometry::SQUARE];
    for (int i = 0; i < gi_quad.nf; i++)
    {
       const int* fv = gi_quad.faces[i];
@@ -626,6 +630,7 @@ int NCMesh::NewTriangle(int n0, int n1, int n2,
 
    // get (degenerate) faces and assign face attributes
    Face* f[3];
+   NCMesh::GeomInfo& gi_tri  = NCMesh::GI[Geometry::TRIANGLE];
    for (int i = 0; i < gi_tri.nf; i++)
    {
       const int* fv = gi_tri.faces[i];
@@ -1319,6 +1324,7 @@ void NCMesh::DerefineElement(int elem)
          Element &ch = elements[child[hex_deref_table[el.ref_type - 1][i]]];
          el.node[i] = ch.node[i];
       }
+      NCMesh::GeomInfo& gi_hex  = NCMesh::GI[Geometry::CUBE];
       for (int i = 0; i < 6; i++)
       {
          Element &ch = elements[child[hex_deref_table[el.ref_type - 1][i + 8]]];
@@ -1334,6 +1340,7 @@ void NCMesh::DerefineElement(int elem)
          Element &ch = elements[child[quad_deref_table[el.ref_type - 1][i]]];
          el.node[i] = ch.node[i];
       }
+      NCMesh::GeomInfo& gi_quad = NCMesh::GI[Geometry::SQUARE];
       for (int i = 0; i < 4; i++)
       {
          Element &ch = elements[child[quad_deref_table[el.ref_type - 1][i + 4]]];
@@ -1344,6 +1351,7 @@ void NCMesh::DerefineElement(int elem)
    }
    else if (el.geom == Geometry::TRIANGLE)
    {
+      NCMesh::GeomInfo& gi_tri  = NCMesh::GI[Geometry::TRIANGLE];
       for (int i = 0; i < 3; i++)
       {
          Element& ch = elements[child[i]];
@@ -1945,6 +1953,7 @@ int NCMesh::find_element_edge(const Element &el, int vn0, int vn1)
 
 int NCMesh::find_hex_face(int a, int b, int c)
 {
+   NCMesh::GeomInfo& gi_hex  = NCMesh::GI[Geometry::CUBE];
    for (int i = 0; i < 6; i++)
    {
       const int* fv = gi_hex.faces[i];
@@ -1970,6 +1979,7 @@ int NCMesh::ReorderFacePointMat(int v0, int v1, int v2, int v3,
    };
 
    int local = find_hex_face(master[0], master[1], master[2]);
+   NCMesh::GeomInfo& gi_hex  = NCMesh::GI[Geometry::CUBE];
    const int* fv = gi_hex.faces[local];
 
    DenseMatrix tmp(mat);
@@ -2751,13 +2761,13 @@ void NCMesh::PointMatrix::GetMatrix(DenseMatrix& point_matrix) const
    }
 }
 
-NCMesh::PointMatrix NCMesh::pm_tri_identity(
+thread_local NCMesh::PointMatrix NCMesh::pm_tri_identity(
    Point(0, 0), Point(1, 0), Point(0, 1)
 );
-NCMesh::PointMatrix NCMesh::pm_quad_identity(
+thread_local NCMesh::PointMatrix NCMesh::pm_quad_identity(
    Point(0, 0), Point(1, 0), Point(1, 1), Point(0, 1)
 );
-NCMesh::PointMatrix NCMesh::pm_hex_identity(
+thread_local NCMesh::PointMatrix NCMesh::pm_hex_identity(
    Point(0, 0, 0), Point(1, 0, 0), Point(1, 1, 0), Point(0, 1, 0),
    Point(0, 0, 1), Point(1, 0, 1), Point(1, 1, 1), Point(0, 1, 1)
 );

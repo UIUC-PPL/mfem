@@ -49,7 +49,7 @@ public:
 };
 
 
-extern StopWatch tic_toc;
+extern thread_local StopWatch tic_toc;
 
 /// Start timing
 extern void tic();

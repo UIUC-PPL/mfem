@@ -1696,7 +1696,7 @@ private:
    PointsMap points_container;
    BasisMap  bases_container;
 
-   static Array2D<int> binom;
+   static thread_local Array2D<int> binom;
 
    static void CalcMono(const int p, const double x, double *u);
    static void CalcMono(const int p, const double x, double *u, double *d);
@@ -1795,7 +1795,7 @@ public:
    ~Poly_1D();
 };
 
-extern Poly_1D poly1d;
+extern thread_local Poly_1D poly1d;
 
 class TensorBasisElement
 {

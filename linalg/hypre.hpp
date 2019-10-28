@@ -19,7 +19,7 @@
 #include <mpi.h>
 
 // Enable internal hypre timing routines
-#define HYPRE_TIMING
+//#define HYPRE_TIMING
 
 // hypre header files
 #include "seq_mv.h"

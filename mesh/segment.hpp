@@ -64,7 +64,7 @@ public:
 };
 
 class Linear1DFiniteElement;
-extern Linear1DFiniteElement SegmentFE;
+extern thread_local Linear1DFiniteElement SegmentFE;
 
 }
 

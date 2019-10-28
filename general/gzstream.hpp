@@ -678,7 +678,7 @@ public:
 class ofgzstream : public std::ostream
 {
 public:
-   static char const *default_mode; // defined in gzstream.cpp
+   static char const * const default_mode; // defined in gzstream.cpp
 
    /** Simple replacement for class @c std::ofstream that can transparently
        create files compressed in gzip format (when @a mode contains the

@@ -49,6 +49,6 @@ void Hexahedron::GetVertices(Array<int> &v) const
    }
 }
 
-TriLinear3DFiniteElement HexahedronFE;
+thread_local TriLinear3DFiniteElement HexahedronFE;
 
 }

@@ -494,7 +494,7 @@ ParNCMesh::GroupId ParNCMesh::GetGroupId(const CommGroup &group)
 ParNCMesh::GroupId ParNCMesh::GetSingletonGroup(int rank)
 {
    MFEM_ASSERT(rank != INT_MAX, "invalid rank");
-   static std::vector<int> group;
+   static thread_local std::vector<int> group;
    group.resize(1);
    group[0] = rank;
    return GetGroupId(group);

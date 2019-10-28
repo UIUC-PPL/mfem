@@ -22,7 +22,7 @@ namespace mfem
 {
 
 // This variable is defined in device.cpp:
-namespace internal { extern occa::device occaDevice; }
+namespace internal { extern thread_local occa::device occaDevice; }
 
 occa::device &OccaDev() { return internal::occaDevice; }
 

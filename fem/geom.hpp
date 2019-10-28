@@ -41,7 +41,7 @@ public:
    static const int NumGeom = NUM_GEOMETRIES;
    static const int MaxDim = 3;
    static const int NumBdrArray[NumGeom];
-   static const char *Name[NumGeom];
+   static const char * const Name[NumGeom];
    static const double Volume[NumGeom];
    static const int Dimension[NumGeom];
    static const int DimStart[MaxDim+2]; // including MaxDim+1
@@ -229,7 +229,7 @@ template <> struct Geometry::Constants<Geometry::PRISM>
 };
 
 // Defined in fe.cpp to ensure construction after 'mfem::WedgeFE'.
-extern Geometry Geometries;
+extern thread_local Geometry Geometries;
 
 
 class RefinedGeometry
@@ -272,7 +272,7 @@ public:
    ~GeometryRefiner();
 };
 
-extern GeometryRefiner GlobGeometryRefiner;
+extern thread_local GeometryRefiner GlobGeometryRefiner;
 
 }
 

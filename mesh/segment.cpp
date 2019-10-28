@@ -46,6 +46,6 @@ void Segment::GetVertices( Array<int> &v ) const
    }
 }
 
-Linear1DFiniteElement SegmentFE;
+thread_local Linear1DFiniteElement SegmentFE;
 
 }
